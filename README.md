@@ -8,7 +8,7 @@ A terminal UI for exploring git branches and commits. Navigate branches, inspect
 
 ## Preview
 
-![gbx Preview](assets/gbx.gif)
+![gbx Preview](gbx.gif)
 
 ## Features
 
