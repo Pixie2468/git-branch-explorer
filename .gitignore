@@ -1,0 +1,15 @@
+# Binaries
+gbx
+dist/
+bin/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
