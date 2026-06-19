@@ -19,10 +19,7 @@ func (m model) View() tea.View {
 
 	// ── Fixed pane widths (percentage of terminal) ──────────────
 	// 3 panes × (2 border + 2 padding) = 12 chars of horizontal chrome
-	usable := m.width - 12
-	if usable < 30 {
-		usable = 30
-	}
+	usable := max(m.width-12, 30)
 	branchW := usable * 22 / 100
 	commitW := usable * 22 / 100
 	detailW := usable - branchW - commitW
@@ -36,14 +33,7 @@ func (m model) View() tea.View {
 		detailW = 16
 	}
 
-	// ── Fixed pane height ───────────────────────────────────────
-	// Total screen rows used by pane = border(2) + Height() value.
-	// We want pane to fill: terminal height - 3 outer rows (\n, help, \n)
-	// So Height() = (m.height - 3) - 2 = m.height - 5
-	paneH := m.height - 5
-	if paneH < 7 {
-		paneH = 7
-	}
+	paneH := max(m.height-5, 7)
 
 	// ── Branches pane ───────────────────────────────────────────
 	branchPane := paneStyle(m.focus == focusBranches).
