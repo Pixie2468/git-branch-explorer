@@ -20,16 +20,16 @@ var runCmd = &cobra.Command{
 	Short: "Execute the dir in specific dir with timeout",
 	RunE: func(cmd *cobra.Command, args []string) error {
 
-		// 1. Initialize the service using the flag values
+		// Initialize the service using the flag values
 		gitSvc := &commands.Service{
 			Path:    targetPath,
 			Timeout: timeout,
 		}
 
-		// 2. Pass the initialized service directly into your model
+		// Pass the initialized service directly into your model
 		p := tea.NewProgram(tui.InitialModel(gitSvc))
 
-		// 3. Run the UI
+		// Run the UI
 		if _, err := p.Run(); err != nil {
 			return fmt.Errorf("error running tui: %w", err)
 		}
@@ -41,8 +41,7 @@ var runCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(runCmd)
 
-	// 4. Bind the flags securely to the variables.
-
+	// Bind the flags securely to the variables.
 	// StringVarP binds a string. Default is "." (current directory).
 	runCmd.Flags().StringVarP(&targetPath, "dir", "d", ".", "Path to the git repository")
 
